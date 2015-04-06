@@ -19,7 +19,7 @@
 		<!--Footer Part End-->
 		<!-- JS Part Start-->
 		{{ Theme::partial('defaultjs') }}	
-		{{ Theme::asset()->scripts() }}	
+		{{-- Theme::asset()->scripts() --}}	
 		<!-- JS Part End-->
 	</body>
 </html>

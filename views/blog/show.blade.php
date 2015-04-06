@@ -48,8 +48,9 @@
 			</div>
 			<h1>Comments</h1>
 			{{$fbscript}}
-			{{$fbcomment}}
-		</div>     
+			{{--$fbcomment--}}
+			{{fbcommentbox(blog_url($detailblog), 600, 10, 'light')}}
+		</div>
 		<!--Middle Part End-->
 		<div class="clear"></div>
 	</div>

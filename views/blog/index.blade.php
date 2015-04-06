@@ -33,7 +33,8 @@
 			<!--Breadcrumb Part Start-->
 			<div class="breadcrumb"><a href="{{URL::to('')}}">Home</a> » Blog</div>
 			<!--Breadcrumb Part End-->
-			<h1>Blog</h1>   
+			<h1>Blog</h1>
+			@if(count($bloglist) > 0)  
 			@foreach($bloglist as $key=>$value)
 			<article>
 		  		<a href={{"'".URL::to("blog/".$value->slug)."'"}}><h2>{{$value->judul}}</h2></a>
@@ -42,7 +43,11 @@
 		  		<p><a href={{"'".URL::to("blog/".$value->slug)."'"}} class="theme">Baca Selengkapnya →</a></p>
 			</article>    
 			<h1></h1>    
-			@endforeach     
+			@endforeach   
+
+			@else
+			<center><p>Blog tidak ditemukan.</p></center>
+			@endif	
 			<!--Pagination Part Start-->
 			<div class="pagination">
 			  	<div class="links">

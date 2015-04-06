@@ -20,6 +20,6 @@
 		</div>
 		<!-- JavaScripts -->
 		{{ Theme::partial('defaultjs') }}	
-    	{{ Theme::asset()->scripts() }}	
+    	{{-- Theme::asset()->scripts() --}}	
 	</body>
 </html>

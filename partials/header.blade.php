@@ -1,7 +1,7 @@
 			<header class="header-top-main">
 				<section class="header-top">
-				@if (Sentry::check())	
-					<div id="welcome">Selamat datang {{Sentry::getUser()->nama}}, {{HTML::link('member', 'Akun')}} | {{HTML::link('order-history', 'Order History' )}} | {{HTML::link('logout', 'logout')}}</div>
+				@if (is_login())	
+					<div id="welcome">Selamat datang {{user()->nama}}, {{HTML::link('member', 'Akun')}} | {{HTML::link('order-history', 'Order History' )}} | {{HTML::link('logout', 'logout')}}</div>
 				@else 	
 					<div id="welcome">Selamat datang! Silakan {{HTML::link('member', 'Login disini')}} atau {{HTML::link('member/create', 'Register')}}.</div>
 				@endif      
@@ -18,7 +18,9 @@
 				</section>
 				<section id="header-main">
 				  	<div id="header">
-						<div id="logo"><a href="{{URL::to('home')}}"><img src="{{URL::to(getPrefixDomain().'/galeri/'.$toko->logo)}}" alt="" height="85" style="min-width: 200px;"/></div>
+						<div id="logo">
+							{{HTML::image(logo_image_url(), '', array('height'=>'85px', 'style'=>'min-width:200px'))}}
+						</div>
 
 						<div class="links"> 
 						@foreach($mainMenu as $key=>$link)
@@ -46,12 +48,12 @@
 						<ul>
 						@foreach($katMenu as $key=>$menu)
 					  		@if($menu->parent=='0')
-							<li><a href={{slugKategori($menu)}}>{{$menu->nama}}</a>
+							<li><a href="{{slugKategori($menu)}}">{{$menu->nama}}</a>
 							@foreach($anMenu as $key=>$submenu)                                
 						  		@if($menu->id==$submenu->parent)
 						  		<div>
 									<ul>        
-										<li><a href={{slugKategori($submenu)}}>{{$submenu->nama}}</a></li>
+										<li><a href="{{slugKategori($submenu)}}">{{$submenu->nama}}</a></li>
 									</ul>
 						  		</div>	
 						 		@endif

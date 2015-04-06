@@ -16,25 +16,36 @@
 				</div>
 			</div>
 			<!--Categories Part End-->
+			@if(count(best_seller(9)) > 0)
 			<section class="box">
 				<div class="box-heading"><span>Bestsellers</span></div>
 				<div class="box-content">
 					<div class="box-product">
-						@foreach(bestSeller(9) as $item)
+						@foreach(best_seller(9) as $item)
 						<div>
-							<div class="image"><a href="{{slugProduk($item)}}">{{imageProduk($item,array('width'=>50,'height'=>50))}}</a></div>
+							<div class="image">
+								<a href="{{slugProduk($item)}}">
+									{{HTML::image(product_image_url($item->gambar1,'thumb'),'',array('width'=>50,'height'=>50))}}
+								</a>
+							</div>
 						</div>
 						@endforeach            
 					</div>
 				</div>
 			</section>
+			@endif
+			@if(count(featured_product(3)) > 0)
 			<section class="box">
 				<div class="box-heading"><span>Featured</span></div>
 				<div class="box-content">
 					<div class="box-product1">
-					@foreach(featured(3) as $item)
+					@foreach(featured_product(3) as $item)
 						<div>
-							<div class="image"><a href="{{slugProduk($item)}}">{{imageProduk($item,array('width'=>50,'height'=>50))}}</a></div>
+							<div class="image">
+								<a href="{{slugProduk($item)}}">
+									{{HTML::image(product_image_url($item->gambar1,'thumb'),'',array('width'=>50,'height'=>50))}}
+								</a>
+							</div>
 							<div class="name"><a href="{{slugProduk($item)}}">{{$item->nama}}</a></div>
 							<div class="price"> <span class="price-old">{{($item->hargaCoret!='' || $item->hargaCoret!=0) ?jadiRupiah($item->hargaCoret) : ''}}</span> <span class="price-new">{{jadiRupiah($item->hargaJual)}}</span> </div>
 						</div>
@@ -42,18 +53,25 @@
 					</div>
 				</div>
 			</section>
+			@endif
+			@if(count(latest_product(6)) > 0)
 			<section class="box">
 				<div class="box-heading"><span>Latest</span></div>
 				<div class="box-content">
 					<div class="box-product">
-						@foreach(latestProduk(6) as $item)
+						@foreach(latest_product(6) as $item)
 						<div>
-							<div class="image"><a href="{{slugProduk($item)}}">{{imageProduk($item,array('width'=>50,'height'=>50))}}</a></div>
+							<div class="image">
+								<a href="{{product_url($item)}}">
+									{{HTML::image(product_image_url($item->gambar1,'thumb'),'',array('width'=>50,'height'=>50))}}
+								</a>
+							</div>
 						</div>
 						@endforeach    
 					</div>
 				</div>
 			</section>
+			@endif
 		</div>
 		<!--Right End-->
 		<!--Middle Part Start-->
@@ -66,19 +84,25 @@
 			<div class="product-info">
 				<div class="left">
 					<div class="image">      		 
-						<a title="{{$produk->nama}}" href="{{URL::to(getPrefixDomain().'/produk/'.$produk->gambar1)}}" class="colorbox">
+						<a title="{{$produk->nama}}" href="{{product_url($produk)}}" class="colorbox">
 							{{imageProduk($produk,array('width'=>250,'height'=>250,'id'=>"image"),'main')}}
 						</a>
 					</div>
 					<div class="image-additional">
 					@if($produk->gambar2!='')			  	
-						<a title="{{$produk->nama}}" href="{{URL::to(getPrefixDomain().'/produk/'.$produk->gambar2)}}" class="colorbox">{{imageProduk($produk,array('width'=>62),2)}}</a>         
+						<a title="{{$produk->nama}}" href="{{product_url($produk)}}" class="colorbox">
+						{{imageProduk($produk,array('width'=>62),2)}}
+						</a>         
 					@endif
 					@if($produk->gambar3!='')			  	
-						<a title="{{$produk->nama}}" href="{{URL::to(getPrefixDomain().'/produk/'.$produk->gambar3)}}" class="colorbox">{{imageProduk($produk,array('width'=>62),3)}}</a>         
+						<a title="{{$produk->nama}}" href="{{product_url($produk)}}" class="colorbox">
+						{{imageProduk($produk,array('width'=>62),3)}}
+						</a>         
 					@endif
 					@if($produk->gambar4!='')			  	
-						<a title="{{$produk->nama}}" href="{{URL::to(getPrefixDomain().'/produk/'.$produk->gambar4)}}" class="colorbox">{{imageProduk($produk,array('width'=>62),4)}}</a>         
+						<a title="{{$produk->nama}}" href="{{product_url($produk)}}" class="colorbox">
+						{{imageProduk($produk,array('width'=>62),4)}}
+						</a>         
 					@endif                               
 					</div>
 				</div>
@@ -92,7 +116,8 @@
 							<span>{{$produk->nama}}</span>
 						</div>
 						<div class="price">
-							<span class="price-old">{{$produk->hargaCoret!='' || $produk->hargaCoret!=0 ? jadiRupiah($produk->hargaCoret):''}}</span> <span class="price-new">{{jadiRupiah($produk->hargaJual)}}</span>
+							<span class="price-old">{{$produk->hargaCoret!='' || $produk->hargaCoret!=0 ? jadiRupiah($produk->hargaCoret):''}}</span>
+							<span class="price-new">{{jadiRupiah($produk->hargaJual)}}</span>
 						</div>
 						<form action="#" id='addorder'>
 						@if($opsiproduk->count()>0)		
@@ -121,10 +146,10 @@
 							</div>
 						</form>
 						<div class="sosmed">
-							<iframe src="//www.facebook.com/plugins/share_button.php?href={{URL::to(slugProduk($produk))}}&amp;layout=button" scrolling="no" frameborder="0" style="border:none; overflow:hidden;height:20px;width:80px;" allowTransparency="true"></iframe>
+							<iframe src="//www.facebook.com/plugins/share_button.php?href={{URL::to(slugProduk($produk))}}&amp;layout=button" scrolling="no" frameborder="0" style="border:none; overflow:hidden;height:20px;width:70px;" allowTransparency="true"></iframe>
 							<a class="twitter-share-button" href="https://twitter.com/share" data-count="none">Tweet </a>
+							<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 						</div>
-						{{pluginTrustklik()}}
 					</div>
 					<div class="tab-content" id="tab-description">
 						<div>
@@ -132,6 +157,9 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="box">
+				<div class="box-content">{{--pluginTrustklik()--}}</div>
 			</div>
 			@if(count($produklain) > 0)
 			<!-- Related Products Start -->
@@ -149,7 +177,11 @@
 							<div class="name"><a href="{{slugProduk($item)}}">{{$item->nama}}</a></div>
 							<div class="price">{{jadiRupiah($item->hargaJual)}}</div>
 							<div class="abs">
-								<div class="cart"><a class="btn-detail ml10" title="Detail" href="{{slugProduk($item)}}"><span>Detail</span></a></div>
+								<div class="cart">
+									<a class="btn-detail ml10" title="Detail" href="{{slugProduk($item)}}">
+										<span>Detail</span>
+									</a>
+								</div>
 							</div>
 						</div>
 					@endforeach	
