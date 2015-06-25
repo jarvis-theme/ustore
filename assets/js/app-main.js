@@ -1,5 +1,4 @@
 var dirTema = document.getElementsByTagName('link')[1].getAttribute('href');
-var inDevelopment = true, version = "001";
 
 require.config({
 	baseUrl: '/',
@@ -14,8 +13,8 @@ require.config({
 			deps : ['jquery'],
 		},
 	},
-    "waitSeconds" : 60,
-    urlArgs: "v=" +  ((inDevelopment) ? (new Date()).getTime() : version),
+    "waitSeconds" : 20,
+    urlArgs: "v=002",
 
 	paths: {
 		// LIBRARY
@@ -38,7 +37,6 @@ require.config({
 		member          : dirTema+'assets/js/pages/member',
 		main            : dirTema+'assets/js/pages/default',
 		produk          : dirTema+'assets/js/pages/produk',
-		// cart         	: dirTema+'assets/js/pages/cart',
 	}
 });
 require([
@@ -53,9 +51,9 @@ require([
 
 	// MEMBER
 	router.define('member/*', 'member@run');
+	router.define('register', 'member@run');
 
 	// PRODUK
-	// router.define('produk', 'cart@run');
 	router.define('produk/*', 'produk@run');
 	
 	main.run();

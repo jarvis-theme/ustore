@@ -1,4 +1,4 @@
-define(['jquery','jq_ui','bootstrap','jq_colorbox','noty'], function($)
+define(['jquery','jq_ui','bootstrap','jq_colorbox'], function($)
 {
 	return new function()
 	{
@@ -9,15 +9,7 @@ define(['jquery','jq_ui','bootstrap','jq_colorbox','noty'], function($)
 			close_dialog();
 			deletecartdialog();
 			addToCartButton();
-			// plugin_trustklik();
-
-			// tampilkan error noty
-			var msg = $('#message');
-			if(msg.length){
-				type = $(msg).attr('class');
-				text = $(msg).html();
-				noty({"text":text,"layout":"top","type":type});    
-			}
+			plugin_trustklik();
 
 			/******** Color box **********/
 			$('.colorbox').colorbox({

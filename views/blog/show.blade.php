@@ -1,5 +1,3 @@
-<section class="wrapper">
-	<div id="container">
 		<!--Right Part-->
 	  	<div id="column-right">
 			<!--Categories Part Start-->
@@ -7,22 +5,26 @@
 			  	<div class="box-heading">Kategori Blog</div>
 			  	<div class="box-content box-category">
 				<ul>
-				@foreach($categoryList as $key=>$value)
-					<li><a href="{{URL::to('blog/category/'.generateSlug($value))}}">{{$value->nama}}</a></li>             
-				@endforeach              
+					@foreach(list_blog_category() as $key=>$value)
+					<li><a href="{{blog_url($value)}}">{{$value->nama}}</a></li>             
+					@endforeach              
 				</ul>
 			  </div>
 			</div>
 			<!--Categories Part End-->
 			<section class="box">
-			  	<div class="box-heading"><span>Bestsellers</span></div>
+			  	<div class="box-heading"><span>Best Sellers</span></div>
 			  	<div class="box-content">
 					<div class="box-product">
-				  	@foreach(bestSeller(9) as $item)
+				  		@foreach(best_seller(9) as $item)
 						<div>
-				 			<div class="image"><a href="{{slugProduk($item)}}">{{imageProduk($item,array('width'=>50,'height'=>50))}}</a></div>
+				 			<div class="image">
+				 				<a href="{{slugProduk($item)}}">
+				 					{{HTML::image(product_image_url($item->gambar1,'thumb', short_description($item->nama,10), array('width'=>'50','height'=>'50')))}}
+			 					</a>
+		 					</div>
 			   			</div>
-			   		@endforeach 
+			   			@endforeach 
 					</div>
 			  	</div>
 			</section>        
@@ -32,7 +34,7 @@
 	  	<div id="content">
 			<!--Breadcrumb Part Start-->
 			<div class="breadcrumb">
-				<a href="{{URL::to('')}}">Home</a> » <a href="{{URL::to('blog')}}">Blog</a> » {{$detailblog->judul}}
+				<a href="{{url('home')}}">Home</a> » <a href="{{url('blog')}}">Blog</a> » {{$detailblog->judul}}
 			</div>
 			<!--Breadcrumb Part End-->
 			<h1>{{$detailblog->judul}}</h1>          
@@ -49,9 +51,7 @@
 			<h1>Comments</h1>
 			{{$fbscript}}
 			{{--$fbcomment--}}
-			{{fbcommentbox(blog_url($detailblog), 600, 10, 'light')}}
+            {{fbcommentbox(blog_url($detailblog), '100%', '10', 'light')}}
 		</div>
 		<!--Middle Part End-->
 		<div class="clear"></div>
-	</div>
-</section>

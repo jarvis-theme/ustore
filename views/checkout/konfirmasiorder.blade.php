@@ -2,9 +2,9 @@
 <div class="error" id='message' style='display:none'>
   We encountered the following errors:
   <br>
-    @foreach($errors->all() as $message)
-    {{ $message }}<br>
-    @endforeach
+  @foreach($errors->all() as $message)
+  {{ $message }}<br>
+  @endforeach
 </div>
 @endif
 @if(Session::has('success'))
@@ -12,12 +12,11 @@
   Terima kasih, konfirmasi anda sudah terkirim.
 </div>
 @endif
-<section class="wrapper">
-  <div id="container">
+
     <!--Middle Part Start-->
     <div id="content">
       <!--Breadcrumb Part Start-->
-      <div class="breadcrumb"> <a href="{{URL::to('')}}">Home</a> » Konfirmasi Order</div>
+      <div class="breadcrumb"><a href="{{url('home')}}">Home</a> » Konfirmasi Order</div>
       <!--Breadcrumb Part End-->
       <h1>Konfirmasi Order {{prefixOrder().$order->kodeOrder}}</h1> 
       <div class="cart-info">
@@ -43,10 +42,10 @@
                 @endforeach                           
               </td>
               <td>
-                {{jadiRupiah($order->total)}}
+                {{price($order->total)}}
               </td>
               <td>
-                - {{($order->status==2 || $order->status==3) ? jadiRupiah(0) : jadiRupiah($order->total)}}
+                - {{($order->status==2 || $order->status==3) ? price(0) : price($order->total)}}
               </td>
               <td>
                 {{$order->noResi}}
@@ -55,57 +54,57 @@
                 @if($order->status==0)
                 <span class="label label-warning">Pending</span>
                 @elseif($order->status==1)
-                <span class="label label-important">Konfirmasi diterima <br><i><small>(menunggu konfirmasi)</small></i></span>
+                <span class="label label-danger">Konfirmasi diterima <br><i><small>(menunggu konfirmasi)</small></i></span>
                 @elseif($order->status==2)
                 <span class="label label-info">Pembayaran diterima</span>
                 @elseif($order->status==3)
-                <span class="label label-info">Terkirim</span>
+                <span class="label label-success">Terkirim</span>
                 @elseif($order->status==4)
-                <span class="label label-info">Batal</span>
+                <span class="label label-default">Batal</span>
                 @endif
               </td>
             </tr>     
           </tbody>
         </table>
       </div>
-      @if($paymentinfo!=null)
 
+      @if($paymentinfo!=null)
       <h3><center>Paypal Payment Details</center></h3>
       <div class="content">
-       <div class="checkout-product">
-        <table class=''>
-          <tr>
-            <td width="20%">Payment Status</td><td>:</td><td>{{$paymentinfo['payment_status']}}</td>
-          </tr>
-          <tr>
-            <td>Payment Date</td><td>:</td><td>{{$paymentinfo['payment_date']}}</td>
-          </tr>
-          <tr>
-            <td>Address Name</td><td>:</td><td>{{$paymentinfo['address_name']}}</td>
-          </tr>
-          <tr>
-            <td>Payer Email</td><td>:</td><td>{{$paymentinfo['payer_email']}}</td>
-          </tr>
-          <tr>
-            <td>Item Name</td><td>:</td><td>{{$paymentinfo['item_name1']}}</td>
-          </tr>
-          <tr>
-            <td>Receiver Email</td><td>:</td><td>{{$paymentinfo['receiver_email']}}</td>
-          </tr>
-          <tr>
-            <td>Total Payment</td><td>:</td><td>{{$paymentinfo['payment_gross']}} {{$paymentinfo['mc_currency']}}</td>
-          </tr>
-        </table>
-        <center><p>Thanks you for your order.</p></center>
+        <div class="checkout-product">
+          <table>
+            <tr>
+              <td width="20%">Payment Status</td><td>:</td><td>{{$paymentinfo['payment_status']}}</td>
+            </tr>
+            <tr>
+              <td>Payment Date</td><td>:</td><td>{{$paymentinfo['payment_date']}}</td>
+            </tr>
+            <tr>
+              <td>Address Name</td><td>:</td><td>{{$paymentinfo['address_name']}}</td>
+            </tr>
+            <tr>
+              <td>Payer Email</td><td>:</td><td>{{$paymentinfo['payer_email']}}</td>
+            </tr>
+            <tr>
+              <td>Item Name</td><td>:</td><td>{{$paymentinfo['item_name1']}}</td>
+            </tr>
+            <tr>
+              <td>Receiver Email</td><td>:</td><td>{{$paymentinfo['receiver_email']}}</td>
+            </tr>
+            <tr>
+              <td>Total Payment</td><td>:</td><td>{{$paymentinfo['payment_gross']}} {{$paymentinfo['mc_currency']}}</td>
+            </tr>
+          </table>
+          <center><p>Thanks you for your order.</p></center>
+        </div>
       </div>
-    </div>
-    @endif
-    @if($order->status==1 || $order->status==0)           
-      @if($order->jenisPembayaran==1)
-      
-      <div class="checkout-heading">Konfirmasi Form</div>
-      {{Form::open(array('url'=> 'konfirmasiorder/'.$order->id, 'method'=>'put', 'class'=> 'form-horizontal'))}}  
-       <div class="checkout-product">
+      @endif
+
+      @if($order->status==1 || $order->status==0) 
+        @if($order->jenisPembayaran==1)
+        <div class="checkout-heading">Konfirmasi Form</div>
+        {{Form::open(array('url'=> 'konfirmasiorder/'.$order->id, 'method'=>'put', 'class'=> 'form-horizontal'))}}  
+          <div class="checkout-product">
             <table class="form">
               <tbody>
                 <tr>
@@ -120,11 +119,11 @@
                   <td><span class="required">*</span>Rekening Tujuan:</td>
                   <td>
                     <select name='bank' required>
-                    <option value=''>-- Pilih Bank Tujuan --</option>
-                    @foreach ($banktrans as $bank)
-                    <option value="{{$bank->id}}">{{$bank->bankdefault->nama}} - {{$bank->noRekening}} - A/n {{$bank->atasNama}}</option>
-                    @endforeach
-                  </select>
+                      <option value=''>-- Pilih Bank Tujuan --</option>
+                      @foreach ($banktrans as $bank)
+                      <option value="{{$bank->id}}">{{$bank->bankdefault->nama}} - {{$bank->noRekening}} - A/n {{$bank->atasNama}}</option>
+                      @endforeach
+                    </select>
                   </td>
                 </tr>
                 <tr>
@@ -137,20 +136,16 @@
                 </tr>
               </tbody>
             </table>
-      </div>
-      {{Form::close()}}
-      @endif
-      @if($order->jenisPembayaran==2)
-      <h3><center>Konfirmasi Pemabayaran Via Paypal</center></h3>
-      <p>Silakan melakukan pembayaran dengan paypal Anda secara online via paypal payment gateway. Transaksi ini berlaku jika pembayaran dilakukan sebelum {{$expired}}. Klik tombol "Bayar Dengan Paypal" di bawah untuk melanjutkan proses pembayaran.</p>
-      {{$paypalbutton}}
-      @endif
-    </div>
-    @endif    
-  </div>
+          </div>
+        {{Form::close()}}
+        @endif
 
-</div>
-<!--Middle Part End-->
-<div class="clear"></div>
-</div>
-</section>
+        @if($order->jenisPembayaran==2)
+        <h3><center>Konfirmasi Pemabayaran Via Paypal</center></h3>
+        <p>Silakan melakukan pembayaran dengan paypal Anda secara online via paypal payment gateway. Transaksi ini berlaku jika pembayaran dilakukan sebelum {{$expired}}. Klik tombol "Bayar Dengan Paypal" di bawah untuk melanjutkan proses pembayaran.</p>
+        {{$paypalbutton}}
+        @endif
+      @endif    
+    </div>
+    <!--Middle Part End-->
+    <div class="clear"></div>

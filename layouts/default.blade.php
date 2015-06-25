@@ -7,16 +7,15 @@
         {{ Theme::asset()->styles() }}	
 	</head>
 	<body class="top">
-		<!-- BEGIN .main-body-wrapper -->
 		<div class="main-body-wrapper">
-			<!-- BEGIN .main-header -->
 			{{ Theme::partial('header') }}	
-			<!-- BEGIN .main-content-wrapper -->
-			{{ Theme::place('content') }}	
-			<!-- BEGIN .main-footer-wrapper -->
+			<section class="wrapper">
+				<div id="container">
+					{{ Theme::place('content') }}	
+				</div>
+			</section>
 			{{ Theme::partial('footer') }}	
 			{{ Theme::asset()->container('footer')->scripts() }}	
-		<!-- END .main-body-wrapper -->
 		</div>
 		<!-- JavaScripts -->
 		{{ Theme::partial('defaultjs') }}	

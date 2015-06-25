@@ -30,8 +30,7 @@
 	@endforeach
 </div>  
 @endif
-<section class="wrapper">
-	<div id="container">
+
 		<!--Right Part-->
 		<div id="column-right">
 			<!--Account Links Start-->
@@ -39,9 +38,9 @@
 				<div class="box-heading">Account</div>
 				<div class="box-content box-category">
 					<ul>
-						<li><a href="{{URL::to('member/login')}}">Login</a></li>
-							<li><a href="{{URL::to('register')}}">Register</a></li>
-							<li><a href="{{URL::to('member/forget-password')}}">Forgotten Password</a>
+						<li><a href="{{url('member/login')}}">Login</a></li>
+							<li><a href="{{url('register')}}">Register</a></li>
+							<li><a href="{{url('member/forget-password')}}">Forgotten Password</a>
 						</li>  
 					</ul>
 				</div>
@@ -52,7 +51,7 @@
 		<!--Middle Part Start-->
 		<div id="content">
 			<!--Breadcrumb Part Start-->
-			<div class="breadcrumb"> <a href="index.html">Home</a> » Recovery Password </div>
+			<div class="breadcrumb"> <a href="{{url('home')}}">Home</a> » Recovery Password </div>
 			<!--Breadcrumb Part End-->
 			<h1>Recovery Password</h1>
 			<div class="login-content">
@@ -61,7 +60,7 @@
 					<div class="content">
 						<p><b>Register Account</b></p>
 						<p>Dengan membuat akun anda akan dapat berbelanja dengan cepat, dan mendapat keuntungan lainnya seperti info diskon maupun informasi terbaru lainya.</p>
-						<a class="button" href="{{URL::to('member/create')}}">Register</a>
+						<a class="button" href="{{url('member/create')}}">Register</a>
 					</div>
 				</div>
 				<div class="right">
@@ -85,5 +84,3 @@
 		</div>
 		<!--Middle Part End-->
 		<div class="clear"></div>
-	</div>
-</section>

@@ -1,5 +1,3 @@
-<section class="wrapper">
-	<div id="container">
 	  	<!--Middle Part Start-->
 	  	<section id="content">
 			{{ Theme::partial('slider') }}  
@@ -79,6 +77,4 @@
 	  	</section>
 	  	<!-- Middle Part End -->
 	  	<div class="clear"></div>
-	</div>
-</section>
-<div class="clear"></div>  
+<div class="clear"></div>

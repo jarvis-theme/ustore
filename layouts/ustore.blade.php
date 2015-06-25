@@ -9,10 +9,14 @@
 	</head>
 	<body>
 		<div class="main-wrapper">
-		  <!-- Header Start-->
-		  {{ Theme::partial('header') }}	  
-		  <!-- Header End-->
-		  {{ Theme::place('content') }}	
+			<!-- Header Start-->
+			{{ Theme::partial('header') }}	  
+			<!-- Header End-->
+			<section class="wrapper">
+				<div id="container">
+		  			{{ Theme::place('content') }}	
+	  			</div>
+  			</section>
 		</div>
 		<!--Footer Part Start-->
 		{{ Theme::partial('footer') }}	

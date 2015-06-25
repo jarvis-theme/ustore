@@ -1,7 +1,5 @@
-<section class="wrapper">
-	<div id="container">
 		<!--Breadcrumb Part Start-->
-		<div class="breadcrumb"><a href="{{URL::to('/')}}">Home</a> » Produk</div>
+		<div class="breadcrumb"><a href="{{url('home')}}">Home</a> » Produk</div>
 		<!--Breadcrumb Part End-->
 		<!--Right Part-->
 		<div id="column-right">
@@ -10,9 +8,9 @@
 				<div class="box-heading">Categories</div>
 				<div class="box-content box-category">
 					<ul>
-					@foreach($kategori as $item1)
+					@foreach(list_category() as $item1)
 						@if($item1->parent==0)
-						<li><a href="{{URL::to('category/'.generateSlug($item1))}}">{{$item1->nama}}</a>
+						<li><a href="{{category_url($item1)}}">{{$item1->nama}}</a>
 						@endif
 					@endforeach              
 					</ul>
@@ -20,18 +18,18 @@
 			</div>
 			<!--Categories Part End-->			
 			<section class="box">
-				<div class="box-heading"><span>Bestsellers</span></div>
+				<div class="box-heading"><span>Best Sellers</span></div>
 				<div class="box-content">
 					<div class="box-product">
-					@foreach(best_seller(9) as $item2)
+						@foreach(best_seller(9) as $item2)
 						<div>
 							<div class="image">
 								<a href="{{product_url($item2)}}">
-									{{HTML::image(product_image_url($item2->gambar1,'thumb'),'',array('width'=>50,'height'=>50))}}
+									{{HTML::image(product_image_url($item2->gambar1,'thumb'), short_description($item2->nama,10), array('width'=>50,'height'=>50))}}
 								</a>
 							</div>
 						</div>
-					@endforeach                            
+						@endforeach	
 					</div>
 				</div>
 			</section>
@@ -41,34 +39,34 @@
 				<div class="box-heading"><span>Featured</span></div>
 				<div class="box-content">
 					<div class="box-product1">
-					@foreach(featured_product(3) as $item3)
+						@foreach(featured_product(3) as $item3)
 						<div>
 							<div class="image">
 								<a href="{{product_url($item3)}}">
-									{{HTML::image(product_image_url($item3->gambar1,'thumb'),'',array('width'=>50,'height'=>50))}}
+									{{HTML::image(product_image_url($item3->gambar1,'thumb'), short_description($item3->nama,10), array('width'=>50,'height'=>50))}}
 								</a>
 							</div>
-							<div class="name"><a href="{{slugProduk($item3)}}">{{$item3->nama}}</a></div>
+							<div class="name"><a href="{{product_url($item3)}}">{{$item3->nama}}</a></div>
 							<div class="price">
-								<span class="price-old">{{($item3->hargaCoret!='' || $item3->hargaCoret!=0) ?jadiRupiah($item3->hargaCoret) : ''}}</span>
-								<span class="price-new">{{jadiRupiah($item3->hargaJual)}}</span>
+								<span class="price-old">{{($item3->hargaCoret!='' || $item3->hargaCoret!=0) ? price($item3->hargaCoret) : ''}}</span>
+								<span class="price-new">{{price($item3->hargaJual)}}</span>
 							</div>
 						</div>
-					@endforeach                                                  
+						@endforeach
 					</div>
 				</div>
 			</section>
 			@endif
 			
 			<section class="box">
-				<div class="box-heading"><span>Latest</span></div>
+				<div class="box-heading"><span>Latest Product</span></div>
 				<div class="box-content">
 					<div class="box-product">
 						@foreach(latest_product(6) as $item4)
 						<div>
 							<div class="image">
-								<a href="{{slugProduk($item4)}}">
-									{{HTML::image(product_image_url($item4->gambar1,'thumb'),'',array('width'=>50,'height'=>50))}}
+								<a href="{{product_url($item4)}}">
+									{{HTML::image(product_image_url($item4->gambar1,'thumb'), short_description($item4->nama,10), array('width'=>50,'height'=>50))}}
 								</a>
 							</div>
 						</div>
@@ -107,20 +105,23 @@
 			@if($view=='' || $view=='grid')
 			<!--Product Grid Start-->
 			<div class="product-grid">
-				@foreach($produk as $item5)	
+				@foreach(list_product(null, @$category, @$colection) as $item5)	
 				<div style="position:relative; width:175px; height:240px;">
 					<div class="image" style="min-height:170px">
-						{{--is_terlaris($produk)--}}
-						{{--is_produkbaru($produk)--}}
-						{{--is_outstok($produk)--}}
-						<a href="{{slugProduk($item5)}}">
+						<a href="{{product_url($item5)}}">
 							{{HTML::image(product_image_url($item5->gambar1,'medium'),$item5->nama,array('width'=>165,'height'=>165))}}
 						</a>
 					</div>
-					<div class="name"><a href="{{slugProduk($item5)}}">{{short_description($item5->nama,20)}}</a></div>
-					<div class="price">{{jadiRupiah($item5->hargaJual)}}</div>
-					<div class="abs"><a href="{{slugProduk($item5)}}">
-						<div class="cart"><a class="btn-detail ml10" title="Detail" href="{{slugProduk($item5)}}"><span>Detail</span></a></div></a>
+					<div class="name"><a href="{{product_url($item5)}}">{{short_description($item5->nama,20)}}</a></div>
+					<div class="price">{{price($item5->hargaJual)}}</div>
+					<div class="abs">
+						<a href="{{product_url($item5)}}">
+							<div class="cart">
+								<a class="btn-detail ml10" title="Detail" href="{{product_url($item5)}}">
+									<span>Detail</span>
+								</a>
+							</div>
+						</a>
 					</div>
 				</div>
 				@endforeach          
@@ -130,7 +131,7 @@
 			@if($view=='list')
 			<!--Product List Start-->
 			<div class="product-list">
-				@foreach($produk as $item)
+				@foreach(list_product(null, @$category, @$collection) as $item)
 				<a href="{{product_url($item)}}">
 					<div>
 						<div class="right">
@@ -140,12 +141,12 @@
 						</div>
 						<div class="left">
 							<div class="image">
-								<a href="{{slugProduk($item)}}">
-									{{HTML::image(product_image_url($item->gambar1,'medium'),'',array('width'=>165,'height'=>165))}}
+								<a href="{{product_url($item)}}">
+									{{HTML::image(product_image_url($item->gambar1,'medium'), $item->nama,array('width'=>165,'height'=>165))}}
 								</a>
 							</div>
-							<div class="price">{{jadiRupiah($item->hargaJual)}}</div>
-							<div class="name"><a href="{{slugProduk($item)}}">{{$item->nama}}</a></div>
+							<div class="price">{{price($item->hargaJual)}}</div>
+							<div class="name"><a href="{{product_url($item)}}">{{$item->nama}}</a></div>
 							<div class="rating"></div>
 							<div class="description">{{shortDescription($item->deskripsi,200)}}</div>
 						</div>
@@ -158,20 +159,17 @@
 			<!--Pagination Part Start-->
 			<div class="pagination">
 				<div class="links">
-				@for($i=1;$i<=ceil($produk->getTotal()/$produk->getPerPage());$i++)
-					@if($produk->getCurrentPage()==$i)
+				@for($i=1;$i<=ceil(list_product(null, @$category, @$collection)->getTotal()/list_product(null, @$category, @$collection)->getPerPage());$i++)
+					@if(list_product(null, @$category, @$collection)->getCurrentPage()==$i)
 					<b>{{$i}}</b>
 					@else
-					<a href="{{$produk->getUrl($i)}}">{{$i}}</a>
+					<a href="{{list_product(null, @$category, @$collection)->getUrl($i)}}">{{$i}}</a>
 					@endif              
 				@endfor
 				</div>
-				<div class="results">Showing {{$produk->getFrom()}} to {{ceil($produk->getTotal()/$produk->getPerPage())}} page(s)</div>
+				<div class="results">Showing {{list_product(null, @$category, @$collection)->getFrom()}} to {{ceil(list_product(null, @$category, @$collection)->getTotal()/list_product(null, @$category, @$collection)->getPerPage())}} page(s)</div>
 			</div>
 			<!--Pagination Part End-->
 		</div>
 		<!--Middle Part End-->
 		<div class="clear"></div>
-	</div>
-</section>
-<div class="clear"></div>

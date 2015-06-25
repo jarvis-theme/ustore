@@ -33,8 +33,7 @@
     <p>Selamat password anda berhasil di reset, Silakan login kembali</p>
 </div>  
 @endif
-<section class="wrapper">
-    <div id="container">
+
       <!--Middle Part Start-->
       <div id="content">
         <!--Breadcrumb Part Start-->
@@ -192,5 +191,3 @@
       </div>
       <!--Middle Part End-->
       <div class="clear"></div>
-    </div>
-  </section>

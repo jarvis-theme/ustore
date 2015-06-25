@@ -1,16 +1,14 @@
-<section class="wrapper">
-  <div id="container">
     <!--Middle Part Start-->
     <div id="content">
       <!--Breadcrumb Part Start-->
-      <div class="breadcrumb"> <a href="{{URL::to('')}}">Home</a> » <a href="{{URL::to('checkout')}}">Shopping Cart</a> » Konfirmasi Pesanan</div>
+      <div class="breadcrumb"><a href="{{url('home')}}">Home</a> » <a href="{{url('checkout')}}">Shopping Cart</a> » Konfirmasi Pesanan</div>
       <!--Breadcrumb Part End-->
       <h1>Konfirmasi Pesanan Anda</h1>
       <div class="checkout">
-        <a href="{{URL::to('checkout')}}"><div class="checkout-heading">Step 1: Checkout Options</div></a>          
+        <a href="{{url('checkout')}}"><div class="checkout-heading">Step 1: Checkout Options</div></a>          
       </div>
       <div class="checkout">
-        <a href="javascript:history.go(-2)"><div class="checkout-heading">Step 2: Account & Detail Pengiriman</div></a>        
+        <a href="javascript:history.go(-2)"><div class="checkout-heading">Step 2: Account & Detail Pengiriman</div></a>
       </div>
       <div class="checkout">
         <a href="javascript:history.go(-1) "><div class="checkout-heading">Step 3: Detail Pembayaran</div></a>          
@@ -89,7 +87,6 @@
                 </table>
               </div>
             </div>
-
           </div>
           <div class="checkout-content" style="display:block">
             <h3>Konfirmasi Pesanan Anda</h3>
@@ -125,12 +122,12 @@
                     <td class="quantity">
                       {{$item['qty']}}
                     </td>
-                    <td class="price">{{ jadiRupiah($item['price'])}}</td>
-                    <td class="total"><span class="{{ $item['rowid'] }}">{{ jadiRupiah($item['price'] * $item['qty'])}}</span></td>
+                    <td class="price">{{ price($item['price'])}}</td>
+                    <td class="total"><span class="{{ $item['rowid'] }}">{{ price($item['price'] * $item['qty'])}}</span></td>
                   </tr>
                   @endforeach
                   <tr>
-                    <td colspan="5" align="right">Sub-Total :<span id='subtotalcart'>{{jadiRupiah(Shpcart::cart()->total())}}</span></td>
+                    <td colspan="5" align="right">Sub-Total :<span id='subtotalcart'>{{price(Shpcart::cart()->total())}}</span></td>
                   </tr>            
                 </tbody>
               </table>
@@ -141,7 +138,7 @@
                   <tr>
                     <td><b>Biaya Pengiriman :</b></td>
                     <td ><span id='ekspedisitext'> ({{$dataekspedisi}})</span><br>
-                      {{jadiRupiah(Session::get('ongkosKirim'))}}
+                      {{price(Session::get('ongkosKirim'))}}
                     </td>
                   </tr>
                   <tr>
@@ -160,7 +157,7 @@
                   </tr>
                   <tr>
                     <td ><b>Potongan {{$kodekupon=='' ? '':'('.$kodekupon.')' }}:</b></td>
-                    <td ><span id='kupontext'>- {{jadiRupiah($diskon)}}</span></td>
+                    <td ><span id='kupontext'>- {{price($diskon)}}</span></td>
                   </tr>              
                   <tr>
                     <td ><b>Pajak:</b></td>
@@ -171,33 +168,31 @@
                   <tr>
                     <td >Kode Unik:</td>
                     <td >
-                      <span id='kodeuniktext'>{{jadiRupiah($kodeunik)}}</span>
+                      <span id='kodeuniktext'>{{price($kodeunik)}}</span>
                     </td>
                   </tr>
                   <tr>
                     <td ><b>Total:</b></td>
                     <td >
                       <strong>
-                         {{jadiRupiah($total)}}
+                         {{price($total)}}
                      </strong>
                    </td>
                  </tr>
                </tbody>
              </table>
-           </div>              
-           <div class="buttons">
-            <div class="right">
-              <input type="submit" class="button" id="button-payment-address" value="Step 5. Selesaikan Order">
+            </div>              
+            <div class="buttons">
+              <div class="right">
+                <input type="submit" class="button" id="button-payment-address" value="Step 5. Selesaikan Order">
+              </div>
             </div>
-          </div>              
-        </div>        
-      </form>
+          </div>
+        {{Form::close()}}
+      </div>
+      <div class="checkout">
+        <div class="checkout-heading">Step 5: Finish Order</div>          
+      </div>        
     </div>
-    <div class="checkout">
-      <div class="checkout-heading">Step 5: Finish Order</div>          
-    </div>        
-  </div>
-  <!--Middle Part End-->
-  <div class="clear"></div>
-</div>
-</section>
+    <!--Middle Part End-->
+    <div class="clear"></div>

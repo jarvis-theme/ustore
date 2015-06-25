@@ -1,5 +1,3 @@
-<section class="wrapper">
-	<div id="container">
 		<!--Right Part-->
 		<div id="column-right">
 			@if(count(best_seller()) > 0)      
@@ -111,6 +109,3 @@
 		</div>
 		<!--Middle Part End-->
 		<div class="clear"></div>
-	</div>
-</section>
-<div class="clear"></div>
