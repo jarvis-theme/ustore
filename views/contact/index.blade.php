@@ -1,22 +1,3 @@
-@if(Session::has('msg2'))
-<div class="success" id='message' style='display:none'>
-	Terima kasih, pesan anda sudah terkirim.
-</div>
-@endif
-@if(Session::has('msg3'))
-<div class="success" id='message' style='display:none'>
-	Maaf, pesan anda belum terkirim.
-</div>
-@endif
-@if($errors->all())
-<div class="error" id='message' style='display:none'>
-	Terjadi kesalahan dalam menyimpan data.<br><br>
-	@foreach($errors->all() as $message)
-	-{{ $message }}<br>
-	@endforeach
-</ul>
-</div>
-@endif
 
 		<!--Right Part-->
 		<div id="column-right">
@@ -110,10 +91,10 @@
 	  		<h2>Contact Form</h2>
 	  		<form action="{{url('kontak')}}" class="wrap contactform" method="post">
 	  			<div class="content"> <b>Your Name:</b><br>
-					<input class="large-field" type="text" placeholder="nama" name='namaKontak' required>
+					<input class="large-field" type="text" placeholder="nama" name='namaKontak' value="{{Input::old('namaKontak')}}" required>
 					<br><br>
 					<b>E-Mail Address:</b><br>
-					<input class="large-field" type="text" placeholder="your@email.com" name="emailKontak" required>
+					<input class="large-field" type="text" placeholder="your@email.com" name="emailKontak" value="{{Input::old('emailKontak')}}" required>
 					<br><br>
 					<b>Message:</b><br>
 					<textarea class="w96" rows="10" cols="40" name="messageKontak" required></textarea>

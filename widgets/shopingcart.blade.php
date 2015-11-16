@@ -14,7 +14,7 @@
 						<td class="image">
 							<img title="{{$cart['name']}}" alt="{{$cart['name']}}" src="{{product_image_url($cart['image'],'thumb')}}" width="40" heigth="40">
 						</td>
-						<td class="name"><a href="{{url('produk/'.Str::slug($cart['name']))}}">{{$cart['name']}}</a></td>
+						<td class="name">{{$cart['name']}}</td>
 						<td class="quantity">x&nbsp;{{$cart['qty']}}</td>
 						<td class="total">{{price($cart['qty']*$cart['price'])}}</td>
 					</tr>

@@ -138,13 +138,13 @@
 							<tr>
 								<td><span class="required">*</span> Provinsi:</td>
 								<td>
-                    				{{Form::select('provinsi',array('' => '-- Pilih Provinsi --'), Input::old("provinsi"),array('required', 'id="provinsi" data-rel="chosen"'))}}
+                    				{{Form::select('provinsi',array('' => '-- Pilih Provinsi --') + $provinsi, Input::old("provinsi"),array('required', 'id="provinsi" data-rel="chosen"'))}}
 								</td>
 							</tr>                
 							<tr>
 								<td><span class="required">*</span> City / Kota:</td>
 								<td>
-                    				{{Form::select('kota',array('' => '-- Pilih Kota --'),Input::old("kota"), array('required'=>'','id'=>'kota'))}}
+                    				{{Form::select('kota',array('' => '-- Pilih Kota --') + $kota ,Input::old("kota"), array('required'=>'','id'=>'kota'))}}
 								</td>
 							</tr>                
 							<tr>

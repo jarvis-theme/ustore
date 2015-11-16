@@ -7,8 +7,8 @@ define(['jquery'], function($)
 		var lod ="<img src='"+URL+"/img/ajax-loader.gif' id='lod'>";
 		self.run = function()
 		{
-			negara();
-			provinsi();
+			//negara();
+			//provinsi();
 		};
 
 		var negara = function(){
@@ -20,7 +20,7 @@ define(['jquery'], function($)
 				if(id!=''){			
 					$(this).attr("disabled",true);
 					$.ajax({
-				  	  url: URL+'/admin/provinsi/list/'+id,		    
+				  	  url: URL+'/provinsi/'+id,		    
 				  	  type: 'get',
 					}).done(function(data){		
 						$('#provinsi').find('option').remove();						
@@ -45,7 +45,7 @@ define(['jquery'], function($)
 				if(id!=''){		
 					$(this).attr("disabled",true);
 					$.ajax({
-				  	  url: URL+'/admin/kabupaten/list/'+id,	    
+				  	  url: URL+'/kabupaten/'+id,	    
 				  	  type: 'get',
 					}).done(function(data){		
 						$('#kota').find('option').remove();						

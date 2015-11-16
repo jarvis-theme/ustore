@@ -1,4 +1,4 @@
-﻿		<!--Right Part-->
+		<!--Right Part-->
 		<div id="column-right">
 			<!--Categories Part Start-->
 			<div class="box">
@@ -114,7 +114,9 @@
 							<h3>{{$produk->nama}}</h3>
 						</div>
 						<div class="price">
-							<span class="price-old">{{$produk->hargaCoret!='' || $produk->hargaCoret!=0 ? price($produk->hargaCoret):''}}</span>
+						    @if($produk->hargaCoret > 0)
+						        <span class="price-old">{{ price($produk->hargaCoret)}}</span>
+						    @endif
 							<span class="price-new">{{price($produk->hargaJual)}}</span>
 						</div>
 						<form action="#" id='addorder'>

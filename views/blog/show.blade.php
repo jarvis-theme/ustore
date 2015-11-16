@@ -41,11 +41,11 @@
 			{{$detailblog->isi}}
 			<h1>&nbsp;</h1>
 			<div class="buttons">
-			@if($next!=null)
-			  	<div class="right"><a class="button" href="{{$next->slug}}">Selanjutnya &rarr;</a></div>
+			@if(next_blog($detailblog))
+			  	<div class="right"><a class="button" href="{{blog_url(next_blog())}}">Selanjutnya &rarr;</a></div>
 		  	@endif
-		  	@if($prev!=null)
-			  	<div class="left"><a class="button" href="{{$prev->slug}}">&larr; Sebelumnya</a></div>
+		  	@if(prev_blog($detailblog))
+			  	<div class="left"><a class="button" href="{{blog_url(prev_blog())}}">&larr; Sebelumnya</a></div>
 		  	@endif
 			</div>
 			<h1>Comments</h1>

@@ -71,7 +71,7 @@
 						<div class="content">
 							<p>I am a returning customer</p>
 							<b>E-Mail Address:</b><br>
-							<input type="text" name="email" required>
+							<input type="text" name="email" value="{{Input::old('email')}}" required>
 							<br><br>
 							<b>Password:</b><br>
 							<input type="password" name="password" required>

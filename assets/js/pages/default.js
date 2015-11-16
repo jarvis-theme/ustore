@@ -18,14 +18,6 @@ define(['jquery','noty'], function($)
 				});
 			});
 
-			// tampilkan error noty
-			var msg = $('#message');
-			if(msg.length){
-				type = $(msg).attr('class');
-				text = $(msg).html();
-				noty({"text":text,"layout":"top","type":type});    
-			}
-
 			/******** Tabs **********/
 			// $('#tabs a').tabs();
 

@@ -1,23 +1,3 @@
-﻿@if($errors->all())
-<div class="error" id='message' style='display:none'>
-  Kami menemukan error berikut:<br>
-  <ul>
-	@foreach($errors->all() as $message)
-	<li>{{ $message }}</li>
-	@endforeach
-  </ul>
-</div>
-@endif
-@if(Session::has('error'))
-<div class="error" id='message' style='display:none'>
-  Password lama anda tidak benar, silakan coba lagi.
-</div>
-@endif
-@if(Session::has('success'))
-<div class="success" id='message' style='display:none'>
-  Informasi anda berhasil di update.
-</div>
-@endif
 
 <!--Right Part-->
 <div id="column-right">

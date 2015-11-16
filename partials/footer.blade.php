@@ -3,8 +3,8 @@
 				<div class="line-bottom">
 					<div id="customHome" class="container_12">
 						<div id="about_us_footer" class="grid_3">
-							<h2>{{$aboutUs[1]->judul}}</h2>
-							{{shortDescription($aboutUs[1]->isi,300)}}
+							<h2>{{about_us()->judul}}</h2>
+							{{short_description(about_us()->isi,300)}}
 						</div>
 						<!--  TWITTER -->
 						<div id="twitter_footer" class="grid_3">
@@ -68,36 +68,21 @@
 			</section>
 			<footer id="footer-main">
 				<div id="footer">
-				@foreach($tautan as $key=>$group)	
-					@if($key==0 || $key>2)	
+				@foreach(all_menu() as $key=>$group)
 					<div class="column">
 						<h3>{{$group->nama}}</h3>
 						<ul>
-						@foreach($quickLink as $key=>$link)	
-							@if($group->id==$link->tautanId)	
-							<li><a href="{{menu_url($link)}}">{{$link->nama}}</a></li>
-							@endif	
-						@endforeach	
-						</ul>
-					</div>
-					@else 	
-					<div class="column">
-						<h3>{{$group->nama}}</h3>
-						<ul>
-						@foreach($quickLink as $key=>$link)	
-							@if($group->id==$link->tautanId)	
+						@foreach($group->link as $key=>$link)
 							<li><a href='{{menu_url($link)}}'>{{$link->nama}}</a></li>
-							@endif	
 						@endforeach	
 						</ul>
 					</div>
-					@endif	
 				@endforeach   
 				
 					<div class="column">
 						<h3>Pembayaran Bank</h3>
 						<ul>
-						@foreach($bank as $value)	
+						@foreach(list_banks() as $value)	
 							<li>{{HTML::image(bank_logo($value), $value->nama, array('width'=>'100px'))}}</li>
 						@endforeach	
 						@foreach(list_payments() as $pay)
