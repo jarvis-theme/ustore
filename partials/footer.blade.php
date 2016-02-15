@@ -6,14 +6,14 @@
 							<h2>{{about_us()->judul}}</h2>
 							{{short_description(about_us()->isi,300)}}
 						</div>
-						<!--  TWITTER -->
+
 						<div id="twitter_footer" class="grid_3">
 							<h2>Latest Testimonial</h2>
 							<br>
 							@foreach(list_testimonial() as $items)	
 							<div class="twitter_footer">
 								<strong>{{$items->nama}}</strong></small>
-								<p>{{$items->isi}}</p>      
+								<p>{{$items->isi}}</p>
 							</div>
 							@endforeach	
 							<br>
@@ -23,11 +23,11 @@
 							<h2>Contact Us</h2>
 							<ul>
 								<li>
-									@if($kontak->telepon)	
+									@if($kontak->telepon)
 									<!-- TELEPHONE -->
 									<ul id="tel" class="contact_column">
 										<li id="footer_telephone">{{$kontak->telepon}}</li>
-										@if($kontak->hp)	
+										@if($kontak->hp)
 										<li id="footer_telephone2">{{$kontak->hp}}</li>
 										@endif	
 									</ul>
@@ -38,12 +38,12 @@
 											<a href="mailto:{{$kontak->email}}">{{$kontak->email}}</a>
 										</li>
 									</ul>
-									@if(!empty($kontak->bb))	
+									@if(!empty($kontak->bb))
 									<!-- bb -->
 									<ul class="contact_column">
 										<li>
 											<div class="pull-left" id="bbm">
-												<img src="{{url('img/bbm.png')}}" style="width: 40px;">
+												<img src="{{url('img/bbm.png')}}">
 											</div>
 											<span>{{$kontak->bb}}</span>
 										</li>
@@ -52,15 +52,16 @@
 								</li>
 							</ul>
 						</div>
+						@if(!empty($kontak->fb))
 						<!--  FACEBOOK -->
 						<div id="facebook_footer" class="grid_3">
 							<h2>Facebook</h2>
 							<div class="facebook-outer">
 								<div id="facebook">
-									{{facebookWidget($kontak)}}
-								</div>
+									{{facebookWidget($kontak,null,'250','400')}}
 							</div>
 						</div>
+						@endif
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -68,30 +69,36 @@
 			</section>
 			<footer id="footer-main">
 				<div id="footer">
-				@foreach(all_menu() as $key=>$group)
+					@foreach(all_menu() as $key=>$group)
 					<div class="column">
 						<h3>{{$group->nama}}</h3>
 						<ul>
-						@foreach($group->link as $key=>$link)
-							<li><a href='{{menu_url($link)}}'>{{$link->nama}}</a></li>
-						@endforeach	
+							@foreach($group->link as $key=>$link)
+							<li><a href="{{menu_url($link)}}">{{$link->nama}}</a></li>
+							@endforeach
 						</ul>
 					</div>
-				@endforeach   
+					@endforeach
 				
 					<div class="column">
 						<h3>Pembayaran Bank</h3>
 						<ul>
-						@foreach(list_banks() as $value)	
-							<li>{{HTML::image(bank_logo($value), $value->nama, array('width'=>'100px'))}}</li>
+						@foreach(list_banks() as $value)
+							<li>{{HTML::image(bank_logo($value), $value->bankdefault->nama, array('class'=>'bank','title'=>$value->bankdefault->nama))}}</li>
 						@endforeach	
 						@foreach(list_payments() as $pay)
-                            @if($pay->nama == 'ipaymu' && $pay->aktif == 1)
-                            <li><img src="{{url('img/bank/ipaymu.jpg')}}" alt="ipaymu" /></li>
-                            @endif
-                        @endforeach
+							@if($pay->nama == 'paypal' && $pay->aktif == 1)
+							<li><img src="{{url('img/bank/paypal.png')}}" alt="paypal" title="Paypal" /></li>
+							@endif
+							@if($pay->nama == 'ipaymu' && $pay->aktif == 1)
+							<li><img src="{{url('img/bank/ipaymu.jpg')}}" alt="ipaymu" title="Ipaymu" /></li>
+							@endif
+							@if($pay->nama == 'bitcoin' && $pay->aktif == 1)
+							<li><img src="{{url('img/bitcoin.png')}}" alt="bitcoin" title="Bitcoin" /></li>
+							@endif
+						@endforeach
 						@if(count(list_dokus()) > 0 && list_dokus()->status == 1)
-						    <li><img src="{{url('img/bank/doku.jpg')}}" alt="doku" /></li>
+							<li><img src="{{url('img/bank/doku.jpg')}}" alt="doku" title="Doku" /></li>
 						@endif
 						</ul>
 					</div>
@@ -105,3 +112,4 @@
 					</div>
 				</div>
 			</footer>
+			{{pluginPowerup()}}

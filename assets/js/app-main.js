@@ -2,6 +2,8 @@ var dirTema = document.querySelector("meta[name='theme_path']").getAttribute('co
 
 require.config({
 	baseUrl: '/',
+    urlArgs: "v=002",
+	waitSeconds : 60,
 	shim: {
 		"bootstrap"	: {
 			deps : ['jquery'],
@@ -13,9 +15,7 @@ require.config({
 			deps : ['jquery'],
 		},
 	},
-    "waitSeconds" : 20,
-    urlArgs: "v=002",
-
+    
 	paths: {
 		// LIBRARY
 		bootstrap 		: 'js/bootstrap.min',
@@ -34,7 +34,6 @@ require.config({
 
 		// CONTROLLER
 		home            : dirTema+'/assets/js/pages/home',
-		member          : dirTema+'/assets/js/pages/member',
 		main            : dirTema+'/assets/js/pages/default',
 		produk          : dirTema+'/assets/js/pages/produk',
 	}
@@ -49,10 +48,6 @@ require([
 	// HOME
 	router.define('/','home@run');
 	router.define('home', 'home@run');
-
-	// MEMBER
-	router.define('member/*', 'member@run');
-	router.define('register', 'member@run');
 
 	// PRODUK
 	router.define('produk/*', 'produk@run');

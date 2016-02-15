@@ -1,36 +1,3 @@
-@if(Session::has('errorlogin'))
-<div class="error" id='message' style='display:none'>
-	<p>Maaf, email atau password anda salah.</p>
-</div>
-@endif
-@if(Session::has('error'))
-<div class="error" id='message' style='display:none'>
-	{{Session::get('error')}}!!!
-</div>
-@endif
-@if(Session::has('errorrecovery'))
-<div class="error" id='message' style='display:none'>
-	<p>Maaf, email anda tidak ditemukan.</p>
-</div>
-@endif
-@if(Session::has('forget'))
-<div class="success" id='message' style='display:none'>
-	<p>Cek email untuk me-reset password anda!</p>
-</div>  
-@endif
-@if(Session::has('error'))
-<div class="error" id='message' style='display:none'>
-	<p>{{Session::get('error')}}</p>
-</div>  
-@endif
-@if($errors->all())
-<div class="error" id='message' style='display:none'>
-	@foreach($errors->all() as $message)
-		<p>{{ $message }}</p>
-	@endforeach
-</div>  
-@endif
-
 		<!--Right Part-->
 		<div id="column-right">
 			<!--Account Links Start-->
@@ -39,9 +6,8 @@
 				<div class="box-content box-category">
 					<ul>
 						<li><a href="{{url('member/login')}}">Login</a></li>
-							<li><a href="{{url('register')}}">Register</a></li>
-							<li><a href="{{url('member/forget-password')}}">Forgotten Password</a>
-						</li>  
+						<li><a href="{{url('register')}}">Register</a></li>
+						<li><a href="{{url('member/forget-password')}}">Lupa Password</a></li>
 					</ul>
 				</div>
 			</div>
@@ -56,11 +22,10 @@
 			<h1>Recovery Password</h1>
 			<div class="login-content">
 				<div class="left">
-					<h2>New Customer</h2>
+					<h2>Pelanggan Baru</h2>
 					<div class="content">
-						<p><b>Register Account</b></p>
 						<p>Dengan membuat akun anda akan dapat berbelanja dengan cepat, dan mendapat keuntungan lainnya seperti info diskon maupun informasi terbaru lainya.</p>
-						<a class="button" href="{{url('member/create')}}">Register</a>
+						<a class="button" href="{{url('member/create')}}">Daftar</a>
 					</div>
 				</div>
 				<div class="right">
@@ -71,14 +36,14 @@
 							<input type="password" value="" name="password" required>
 							<br>
 							<br>
-							<b>Konfirmasi Password Baru:</b><br>
+							<b>Ulangi Password Baru:</b><br>
 							<input type="password" value="" name="password_confirmation" required>
 							<br>
 							<br>
 							<br>
 							<input type="submit" class="button" value="Reset Password">
 						</div>
-					{{Form::close}}
+					{{Form::close()}}
 				</div>
 			</div>
 		</div>

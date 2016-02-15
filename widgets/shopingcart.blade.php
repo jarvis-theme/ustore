@@ -18,13 +18,13 @@
 						<td class="quantity">x&nbsp;{{$cart['qty']}}</td>
 						<td class="total">{{price($cart['qty']*$cart['price'])}}</td>
 					</tr>
-					@endforeach                
+					@endforeach  
 				</tbody>
 			</table>
 		</div>
 		<div class="mini-cart-total">
 			<table class="total">
-				<tbody>                
+				<tbody>
 					<tr>
 						<td align="right"><b>Total</b></td>
 						<td align="right">{{ price(Shpcart::cart()->total() )}}</td>

@@ -1,11 +1,10 @@
-define(['jquery','noty'], function($)
+define(['jquery'], function($)
 {
 	return new function()
 	{
 		var self = this;
 		self.run = function()
 		{
-			showOption();
 			linkFooter();
 			subMenu();
 			megaMenu();
@@ -51,55 +50,6 @@ define(['jquery','noty'], function($)
 			$('.menu-main > h3').click(function () {
 			  $('.menu-main').parent().find("#menu").slideToggle('medium');
 			});
-		};
-
-		var showOption = function(){
-			$('#show').change(function(){
-				id=this.value;		
-				link = $(this).attr('data-rel');
-				arr = new Array();
-				data = getQueryVariable();
-				qry = '';
-				if(data['page']!=undefined){
-					qry = qry+'?page='+data['page'];
-				}
-				if(data['show']!=undefined){
-					if(qry==''){
-						qry = qry+'?show='+id;
-					}				
-					else{
-						qry = qry+'&show='+id;
-					}
-						
-				}else{
-					if(qry==''){
-						qry = qry+'?show='+id;
-					}
-					else{
-						qry = qry+'&show='+id;
-					}
-
-				}
-				if(data['view']!=undefined){
-					if(qry==''){
-						qry = qry+'?view='+data['view'];
-					}
-					else{
-						qry = qry+'&view='+data['view'];
-					}
-				}
-				window.location = link+qry;
-			});
-		};
-		var getQueryVariable = function() {
-		    var query = window.location.search.substring(1);
-		    var vars = query.split('&');
-		    var rs = new Array();
-		    for (var i = 0; i < vars.length; i++) {
-		        var pair = vars[i].split('=');
-		        rs[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
-		    }
-		    return rs;
 		};
 
 		var tabs = function() {

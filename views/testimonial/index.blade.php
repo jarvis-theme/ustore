@@ -1,27 +1,12 @@
-@if(Session::has('msg'))
-<div class="success" id='message' style='display:none'>
-	<p>Terima kasih, testimonial anda sudah terkirim.</p>
-</div>
-@endif
-@if($errors->all())
-<div class="error" id='message' style='display:none'>
-Terjadi kesalahan dalam menyimpan data.<br>
-	<ul>
-		@foreach($errors->all() as $message)
-		<li>{{ $message }}</li>
-		@endforeach
-	</ul>
-</div>
-@endif
-
 		<!--Right Part-->
 		<div id="column-right">
+			@if(count(best_seller()) > 0)
 			<!--Categories Part End-->
 			<section class="box">
 				<div class="box-heading"><span>Best Sellers</span></div>
 				<div class="box-content">
 					<div class="box-product">
-						@foreach(best_seller(9) as $item)
+						@foreach(best_seller() as $item)
 						<div>
 							<div class="image">
 								<a href="{{product_url($item)}}">
@@ -29,15 +14,17 @@ Terjadi kesalahan dalam menyimpan data.<br>
 								</a>
 							</div>
 						</div>
-						@endforeach                            
+						@endforeach
 					</div>
 				</div>
 			</section>
+			@endif
+			@if(count(featured_product()) > 0)
 			<section class="box">
-				<div class="box-heading"><span>Featured</span></div>
+				<div class="box-heading"><span>Top Product</span></div>
 				<div class="box-content">
 					<div class="box-product1">
-						@foreach(featured_product(3) as $item)
+						@foreach(featured_product() as $item)
 						<div>
 							<div class="image">
 								<a href="{{product_url($item)}}">
@@ -46,19 +33,23 @@ Terjadi kesalahan dalam menyimpan data.<br>
 							</div>
 							<div class="name"><a href="{{product_url($item)}}">{{$item->nama}}</a></div>
 							<div class="price">
-								<span class="price-old">{{($item->hargaCoret!='' || $item->hargaCoret!=0) ?price($item->hargaCoret ): ''}}</span>
+								@if($item->hargaCoret > 0)
+								<span class="price-old">{{price($item->hargaCoret)}}</span>
+								@endif
 								<span class="price-new">{{price($item->hargaJual)}}</span>
 							</div>
 						</div>
-						@endforeach                                                  
+						@endforeach
 					</div>
 				</div>
 			</section>
+			@endif
+			@if(count(latest_product()) > 0)
 			<section class="box">
-				<div class="box-heading"><span>Latest Product</span></div>
+				<div class="box-heading"><span>New Product</span></div>
 				<div class="box-content">
 					<div class="box-product">
-						@foreach(latest_product(6) as $item)
+						@foreach(latest_product() as $item)
 						<div>
 							<div class="image">
 								<a href="{{product_url($item)}}">
@@ -66,10 +57,11 @@ Terjadi kesalahan dalam menyimpan data.<br>
 								</a>
 							</div>
 						</div>
-						@endforeach                                   
+						@endforeach
 					</div>
 				</div>
 			</section>
+			@endif
 		</div>
 		<!--Right End-->
 		<!--Middle Part Start-->
@@ -85,32 +77,20 @@ Terjadi kesalahan dalam menyimpan data.<br>
 				{{($value->isi)}}
 			</article>
 			@endforeach
-			<br>        
-			<!--Pagination Part Start-->
-			<div class="pagination">
-				<div class="links">
-				@for($i=1;$i<=ceil($testimonial->getTotal()/$testimonial->getPerPage());$i++)
-					@if($testimonial->getCurrentPage()==$i)
-					<b>{{$i}}</b>
-					@else
-					<a href="{{$testimonial->getUrl($i)}}">{{$i}}</a>
-					@endif              
-				@endfor
-				</div>
-				<div class="results">Showing {{$testimonial->getFrom()}} to {{ceil($testimonial->getTotal()/$testimonial->getPerPage())}} page(s)</div>
-			</div>
-			<!--Pagination Part End-->
-			<h1>Testimonial Form</h1>
+			<br>
+			{{list_testimonial()->links()}}
+			
+			<h1>Kirim Testimonial</h1>
 			<form action="{{url('testimoni')}}" class="wrap contactform" method="post">
-			<div class="content"> <b>Your Name:</b><br>
-				<input class="large-field" type="text" placeholder="nama" name='nama' required>
+			<div class="content"> <b>Nama:</b><br>
+				<input class="large-field" type="text" name="nama" required>
 				<br><br>
-				<b>Message:</b><br>
+				<b>Pesan:</b><br>
 				<textarea class="w96" rows="10" cols="40" name="testimonial" required></textarea>
 			</div>
 			<div class="buttons">
 				<div class="right">
-					<input type="submit" class="button" value="Send">
+					<input type="submit" class="button" value="Kirim">
 				</div>
 			</div>
 			</form>

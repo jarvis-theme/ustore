@@ -1,18 +1,18 @@
 ﻿		<!--Right Part-->
-		<div id="column-right">      
+		<div id="column-right">
 			<!--Account Links End-->
 			@if(count(best_seller()) > 0)
 			<section class="box">
 				<div class="box-heading"><span>Best Sellers</span></div>
 				<div class="box-content">
 					<div class="box-product">
-						@foreach(best_seller(9) as $item)
+						@foreach(best_seller() as $item)
 						<div>
 							<div class="image">
-							 	<a href="{{product_url($item)}}">
-							 		{{HTML::image(product_image_url($item->gambar1,'thumb'),short_description($item->nama,15),array('width'=>50,'height'=>50))}}
-						 		</a>
-				 			</div>
+								<a href="{{product_url($item)}}">
+									{{HTML::image(product_image_url($item->gambar1,'thumb'),short_description($item->nama,15),array('width'=>50,'height'=>50))}}
+								</a>
+							</div>
 						</div>
 						@endforeach 
 					</div>
@@ -21,32 +21,35 @@
 			@endif
 			@if(count(featured_product()) > 0)
 			<section class="box">
-				<div class="box-heading"><span>Featureds</span></div>
+				<div class="box-heading"><span>Top Product</span></div>
 				<div class="box-content">
 					<div class="box-product1">
-						@foreach(featured_product(3) as $item)
+						@foreach(featured_product() as $item)
 						<div>
 							<div class="image">
 								<a href="{{product_url($item)}}">
 									{{HTML::image(product_image_url($item->gambar1,'thumb'),short_description($item->nama,10),array('width'=>50,'height'=>50))}}
 								</a>
 							</div>
-							<div class="name"><a href="{{product_url($item)}}">{{$item->nama}}</a></div>
+							<div class="name"><a href="{{product_url($item)}}">{{short_description($item->nama,15)}}</a></div>
 							<div class="price">
-								<span class="price-old">{{($item->hargaCoret!='' || $item->hargaCoret!=0) ? price($item->hargaCoret ): ''}}</span>
+								@if($item->hargaCoret > 0)
+								<span class="price-old">{{price($item->hargaCoret)}}</span>
+								@endif
 								<span class="price-new">{{price($item->hargaJual)}}</span>
 							</div>
 						</div>
-						@endforeach   
+						@endforeach  
 					</div>
 				</div>
 			</section>
 			@endif
+			@if(latest_product()->count() > 0)
 			<section class="box">
-				<div class="box-heading"><span>Latest Product</span></div>
+				<div class="box-heading"><span>New Product</span></div>
 				<div class="box-content">
 					<div class="box-product">
-						@foreach(latest_product(6) as $item)
+						@foreach(latest_product() as $item)
 						<div>
 							<div class="image">
 								<a href="{{product_url($item)}}">
@@ -58,12 +61,13 @@
 					</div>
 				</div>
 			</section>
+			@endif
 		</div>
 		<!--Right End-->
 		<!--Middle Part Start-->
 		<div id="content">
 			<!--Breadcrumb Part Start-->
-			<div class="breadcrumb"> <a href="{{url('home')}}">Home</a> » History Order </div>
+			<div class="breadcrumb"> <a href="{{url('home')}}">Home</a> » Daftar Pembelian </div>
 			<!--Breadcrumb Part End-->
 			<h1>History Order</h1>
 			<div class="cart-info">
@@ -78,7 +82,7 @@
 					</thead>
 					<tbody>
 						@foreach(list_order() as $item)
-					 	<tr>
+						<tr>
 							<td>
 								{{prefixOrder()}}{{waktu($item->kodeOrder)}}<br>
 								@if($item->status==0 || $item->status==1)
@@ -87,13 +91,16 @@
 							</td>
 							<td>
 								{{$item->tanggalOrder}}<br>
-								@foreach ($item->detailorder as $detail)
-									-{{@$detail->produk->nama}} {{@$detail->opsiSkuId !=0 ? '('.@$detail->opsisku->opsi1.(@$detail->opsisku->opsi2 != '' ? ' / '.@$detail->opsisku->opsi2:'').(@$detail->opsisku->opsi3 !='' ? ' / '.@$detail->opsisku->opsi3:'').')':''}} - {{@$detail->qty}}<br>
-								@endforeach                           
+								<ul>
+									@foreach ($item->detailorder as $detail)
+									<li>{{@$detail->produk->nama}} {{@$detail->opsiSkuId !=0 ? '('.@$detail->opsisku->opsi1.(@$detail->opsisku->opsi2 != '' ? ' / '.@$detail->opsisku->opsi2:'').(@$detail->opsisku->opsi3 !='' ? ' / '.@$detail->opsisku->opsi3:'').')':''}} - {{@$detail->qty}}</li>
+									<br>
+									@endforeach 
+								</ul>
 							</td>
 							<td>
 								{{ price($item->total)}}<br>
-								No resi : {{ $item->noResi}}
+								{{ !empty($item->noResi) ? 'No resi : '.$item->noResi : ''}}
 							</td>
 							<td>
 								@if($item->status==0)
@@ -109,23 +116,10 @@
 								@endif
 							</td>
 						</tr>
-						@endforeach    
+						@endforeach
 					</tbody>
 				</table>
-				<!--Pagination Part Start-->
-				<div class="pagination">
-					<div class="links">
-						@for($i=1;$i<=ceil(list_order()->getTotal()/list_order()->getPerPage());$i++)
-							@if(list_order()->getCurrentPage()==$i)	
-							<b>{{$i}}</b>
-							@else 	
-							<a href="{{list_order()->getUrl($i)}}">{{$i}}</a>
-							@endif              
-						@endfor 	
-					</div>
-					<div class="results">Showing {{list_order()->getFrom()}} to {{ceil(list_order()->getTotal()/list_order()->getPerPage())}} page(s)</div>
-				</div>
-				<!--Pagination Part End-->
+				{{list_order()->links()}}
 			</div>
 		</div>
 		<!--Middle Part End-->

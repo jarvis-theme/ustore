@@ -2,9 +2,8 @@
 <html>
 	<head>
 		{{ Theme::partial('seostuff') }}	
-		<!-- Stylesheets -->
 		{{ Theme::partial('defaultcss') }}	
-        {{ Theme::asset()->styles() }}	
+		{{ Theme::asset()->styles() }}	
 	</head>
 	<body class="top">
 		<div class="main-body-wrapper">
@@ -19,6 +18,5 @@
 		</div>
 		<!-- JavaScripts -->
 		{{ Theme::partial('defaultjs') }}	
-    	{{-- Theme::asset()->scripts() --}}	
 	</body>
 </html>
