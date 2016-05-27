@@ -84,7 +84,9 @@
 						<h3>Pembayaran Bank</h3>
 						<ul>
 						@foreach(list_banks() as $value)
+                        	@if($value->status == 1)
 							<li>{{HTML::image(bank_logo($value), $value->bankdefault->nama, array('class'=>'bank','title'=>$value->bankdefault->nama))}}</li>
+							@endif
 						@endforeach	
 						@foreach(list_payments() as $pay)
 							@if($pay->nama == 'paypal' && $pay->aktif == 1)

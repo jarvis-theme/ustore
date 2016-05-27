@@ -198,7 +198,7 @@
 			<div class="box">
 				<div class="box-heading">Reviews Product</div>
 				<div class="box-content">
-					{{pluginTrustklik()}}
+					{{ pluginComment(product_url($produk), @$produk) }}
 				</div>
 			</div>
 		</div>
