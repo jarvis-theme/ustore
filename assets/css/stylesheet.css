@@ -712,7 +712,7 @@ ul.list-bullet li a:hover { color:#444; -webkit-transition: all 0.3s ease-in-out
 #bbm {
 	float:left; margin-left:-25px; margin-top:-10px; margin-right:10px;
 }
-#bbm img{width: 40px;}#logo img{max-width:100%}.bank{width: 100px}.submenu2{margin-left: 10px !important}
+#bbm img{width: 40px;}#logo img{max-width:200px; max-height: 85px}.bank{width: 100px}.submenu2{margin-left: 10px !important}
 .notfound{font-style: italic}td.name > ul{padding-left: 10px}.imagepro{position:relative;}.read{width: auto;}
 #tab-information .description{min-height: 35px;}.breadcrumb > span:last-child{display: none}
 .pagination ul{padding: 0}.powerup > h5{font-size: 15px}.powerup form input[type="submit"]{margin-top: 5px}
