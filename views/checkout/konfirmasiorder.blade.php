@@ -18,7 +18,7 @@
 					<tbody>
 						<tr>
 							<td>
-								{{waktu($order->tanggalOrder)}}
+								{{waktu($order->tanggalOrder)}} 
 							</td>
 							<td class="name">
 								<ul>
@@ -84,7 +84,7 @@
 				@if($order->jenisPembayaran==1 && $order->status == 0)
 				<div class="checkout-heading">{{trans('content.step5.confirm_btn')." ".trans('content.step3.transfer')}}</div>
 				{{Form::open(array('url'=> 'konfirmasiorder/'.$order->id, 'method'=>'put', 'class'=> 'form-horizontal'))}}  
-					<div class="checkout-product">
+					<div class="checkout-product confirm-pay">
 						<table class="form">
 							<tbody>
 								<tr>
@@ -121,43 +121,53 @@
 				@endif
 
 				@if($order->jenisPembayaran==2)
-                    <center>
-                        <h2><b>{{trans('content.step5.confirm_btn')}} Paypal</b></h2><hr>
-                        <p>{{trans('content.step5.paypal')}}</p>
-                    </center><br>
-                    <center id="paypal">{{$paypalbutton}}</center>
-                    <br>
-                @elseif($order->jenisPembayaran==4) 
-                    @if(($checkouttype==1 && $order->status < 2) || ($checkouttype==3 && ($order->status!=6)))
-                    <center>
-                        <h2><b>{{trans('content.step5.confirm_btn')}} iPaymu</b></h2><hr>
-                        <p>{{trans('content.step5.ipaymu')}}</p><br>
-                        <a class="btn-pay" href="{{url('ipaymu/'.$order->id)}}" target="_blank">{{trans('content.step5.ipaymu_btn')}}</a>
-                        <br>
-                    </center>
-                    @endif
-                @elseif($order->jenisPembayaran==5 && $order->status == 0)
-                    <center>
-                        <h2><b>{{trans('content.step5.confirm_btn')}} DOKU MyShortCart</b></h2><hr>
-                        <p>{{trans('content.step5.doku')}}</p><br>
-                        {{ $doku_button }}
-                        <br>
-                    </center>
-                @elseif($order->jenisPembayaran == 6 && $order->status == 0)
-                    <center>
-                        <h2><b>{{trans('content.step5.confirm_btn')}} Bitcoin</b></h2><hr>
-                        <p>{{trans('content.step5.bitcoin')}}</p><br>
-                        {{$bitcoinbutton}}
-                        <br>
-                    </center>
-                @elseif($order->jenisPembayaran == 8 && $order->status == 0)
-                    <center>
-                        <h2><b>{{trans('content.step5.confirm_btn')}} Veritrans</b></h2><hr>
-                        <p>{{trans('content.step5.veritrans')}}</p><br>
-                        <button class="btn-pay" onclick="location.href='{{ $veritrans_payment_url }}'">{{trans('content.step5.veritrans_btn')}}</button>
-                        <br>
-                    </center>
-                @endif
+				<div class="confirm-pay">
+					<center>
+						<h2><b>{{trans('content.step5.confirm_btn')}} Paypal</b></h2><hr>
+						<p>{{trans('content.step5.paypal')}}</p>
+					</center><br>
+					<center id="paypal">{{$paypalbutton}}</center>
+					<br>
+				</div>
+				@elseif($order->jenisPembayaran==4) 
+					@if(($checkouttype==1 && $order->status < 2) || ($checkouttype==3 && ($order->status!=6)))
+					<div class="confirm-pay">
+						<center>
+							<h2><b>{{trans('content.step5.confirm_btn')}} iPaymu</b></h2><hr>
+							<p>{{trans('content.step5.ipaymu')}}</p><br>
+							<a class="btn-pay" href="{{url('ipaymu/'.$order->id)}}" target="_blank">{{trans('content.step5.ipaymu_btn')}}</a>
+						</center>
+						<br>
+					</div>
+					@endif
+				@elseif($order->jenisPembayaran==5 && $order->status == 0)
+				<div class="confirm-pay">
+					<center>
+						<h2><b>{{trans('content.step5.confirm_btn')}} DOKU MyShortCart</b></h2><hr>
+						<p>{{trans('content.step5.doku')}}</p><br>
+						{{ $doku_button }}
+					</center>
+					<br>
+				</div>
+				@elseif($order->jenisPembayaran == 6 && $order->status == 0)
+				<div class="confirm-pay">
+					<center>
+						<h2><b>{{trans('content.step5.confirm_btn')}} Bitcoin</b></h2><hr>
+						<p>{{trans('content.step5.bitcoin')}}</p><br>
+						{{$bitcoinbutton}}
+					</center>
+					<br>
+				</div>
+				@elseif($order->jenisPembayaran == 8 && $order->status == 0)
+				<div class="confirm-pay">
+					<center>
+						<h2><b>{{trans('content.step5.confirm_btn')}} Veritrans</b></h2><hr>
+						<p>{{trans('content.step5.veritrans')}}</p><br>
+						<button class="btn-pay" onclick="location.href='{{ $veritrans_payment_url }}'">{{trans('content.step5.veritrans_btn')}}</button>
+					</center>
+					<br>
+				</div>
+				@endif
 			@endif 
 		</div>
 		<!--Middle Part End-->

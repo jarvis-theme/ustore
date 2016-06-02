@@ -6,11 +6,11 @@
 					<div id="welcome">Selamat datang! Silakan {{HTML::link('member', 'Login disini')}} atau {{HTML::link('member/create', 'Register')}}</div>
 					@endif
 					<!--<div id="currency"> <a title="US Dollar"><b>$</b></a> <a title="Euro">€</a> <a title="Pound Sterling">£</a> </div>-->
-					<div id="language"> 
+					<div id="language">
 					</div>
 					<!-- Mini Cart Start-->
 					<div id="shoppingcartplace">
-						{{shopping_cart()}}
+						{{shopping_cart()}} 
 					</div>
 					<!-- Mini Cart End-->
 					<div class="clear"></div>
@@ -19,7 +19,7 @@
 					<div id="header">
 						<div id="logo">
 							<a href="{{ url('home') }}">
-								{{HTML::image(url(logo_image_url()), Theme::place('title'))}}
+								{{HTML::image(url(logo_image_url()), Theme::place('title'))}} 
 							</a>
 						</div>
 

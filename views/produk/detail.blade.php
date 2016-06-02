@@ -25,7 +25,7 @@
 						<div>
 							<div class="image">
 								<a href="{{product_url($item)}}">
-									{{HTML::image(product_image_url($item->gambar1,'thumb'), short_description($item->nama,10), array('width'=>50,'height'=>50))}}
+									{{HTML::image(product_image_url($item->gambar1,'thumb'), short_description($item->nama,10), array('width'=>50,'height'=>50))}} 
 								</a>
 							</div>
 						</div>
@@ -43,7 +43,7 @@
 						<div>
 							<div class="image">
 								<a href="{{product_url($item)}}">
-									{{HTML::image(product_image_url($item->gambar1,'thumb'), short_description($item->nama,10), array('width'=>50,'height'=>50))}}
+									{{HTML::image(product_image_url($item->gambar1,'thumb'), short_description($item->nama,10), array('width'=>50,'height'=>50))}} 
 								</a>
 							</div>
 							<div class="name"><a href="{{product_url($item)}}">{{$item->nama}}</a></div>
@@ -68,7 +68,7 @@
 						<div>
 							<div class="image">
 								<a href="{{product_url($item)}}">
-									{{HTML::image(product_image_url($item->gambar1,'thumb'), short_description($item->nama,10), array('width'=>50,'height'=>50))}}
+									{{HTML::image(product_image_url($item->gambar1,'thumb'), short_description($item->nama,10), array('width'=>50,'height'=>50))}} 
 								</a>
 							</div>
 						</div>
@@ -77,23 +77,21 @@
 				</div>
 			</section>
 			@endif
-			<section class="box powerup">
-				{{pluginSidePowerup()}}
-			</section>
+			
 		</div>
 		<!--Right End-->
 		<!--Middle Part Start-->
 		<div id="content">
 			<!--Breadcrumb Part Start-->
 			<div class="breadcrumb">
-				{{breadcrumbProduk($produk,'; <span>»</span>',';', true, $produk->kategori)}}
+				{{breadcrumbProduk($produk,'; <span>»</span>',';', true, $produk->kategori)}} 
 			</div>
 			<!--Breadcrumb Part End-->
 			<div class="product-info">
 				<div class="left">
 					<div class="image">
 						<a title="{{$produk->nama}}" href="{{product_url($produk)}}" class="colorbox">
-							{{HTML::image(product_image_url($produk->gambar1), $produk->nama, array('width'=>250,'height'=>250,'id'=>"image"))}}
+							{{HTML::image(product_image_url($produk->gambar1), $produk->nama, array('width'=>250,'height'=>250,'id'=>"image"))}} 
 						</a>
 					</div>
 					<div class="image-additional">
@@ -139,7 +137,7 @@
 										<option value=""> --- Please Select --- </option>
 										@foreach ($opsiproduk as $key => $opsi)
 										<option value="{{$opsi->id}}" {{ $opsi->stok==0 ? 'disabled':''}} >
-										{{$opsi->opsi1.($opsi->opsi2=='' ? '':' / '.$opsi->opsi2).($opsi->opsi3=='' ? '':' / '.$opsi->opsi3)}} {{price($opsi->harga)}}
+										{{$opsi->opsi1.($opsi->opsi2=='' ? '':' / '.$opsi->opsi2).($opsi->opsi3=='' ? '':' / '.$opsi->opsi3)}} {{price($opsi->harga)}} 
 										</option>
 										@endforeach
 									</select>
@@ -156,7 +154,7 @@
 							</div>
 						</form>
 						<div class="sosmed">
-							{{sosialShare(product_url($produk))}}
+							{{sosialShare(product_url($produk))}} 
 						</div>
 					</div>
 					<div class="tab-content" id="tab-description">
@@ -176,7 +174,7 @@
 						<div>
 							<div class="image">
 								<a href="{{product_url($item)}}">
-									{{HTML::image(product_image_url($item->gambar1), $item->nama, array('width'=>165,'height'=>165))}}
+									{{HTML::image(product_image_url($item->gambar1), $item->nama, array('width'=>165,'height'=>165))}} 
 								</a>
 							</div>
 							<div class="name"><a href="{{product_url($item)}}">{{$item->nama}}</a></div>
@@ -198,7 +196,9 @@
 			<div class="box">
 				<div class="box-heading">Reviews Product</div>
 				<div class="box-content">
-					{{ pluginComment(product_url($produk), @$produk) }}
+					<div class="powerup-review">
+						{{ pluginComment(product_url($produk), @$produk) }} 
+					</div>
 				</div>
 			</div>
 		</div>

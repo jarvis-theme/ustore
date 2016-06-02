@@ -1,7 +1,7 @@
 	@if($tema->isiCss=='')
-	{{generate_theme_css('ustore/assets/css/stylesheet.css')}}  
+	{{generate_theme_css('ustore/assets/css/stylesheet.css?v=001')}}  
 	@else   
-	{{generate_theme_css('ustore/assets/css/editstylesheet.css')}}  
+	{{generate_theme_css('ustore/assets/css/editstylesheet.css?v=001')}}  
 	@endif  
 	{{generate_theme_css('ustore/assets/css/slideshow.css')}}  
 	{{generate_theme_css('ustore/assets/css/carousel.css')}}  

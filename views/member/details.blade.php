@@ -62,6 +62,9 @@
 		</div>
 	</section>
 	@endif
+	<section class="box powerup">
+		{{pluginSidePowerup()}} 
+	</section>
 </div>
 <!--Right End-->
 <!--Middle Part Start-->

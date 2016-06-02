@@ -6,7 +6,6 @@
 							<h2>{{about_us()->judul}}</h2>
 							{{short_description(about_us()->isi,300)}}
 						</div>
-
 						<div id="twitter_footer" class="grid_3">
 							<h2>Latest Testimonial</h2>
 							<br>
@@ -84,7 +83,7 @@
 						<h3>Pembayaran Bank</h3>
 						<ul>
 						@foreach(list_banks() as $value)
-                        	@if($value->status == 1)
+							@if($value->status == 1)
 							<li>{{HTML::image(bank_logo($value), $value->bankdefault->nama, array('class'=>'bank','title'=>$value->bankdefault->nama))}}</li>
 							@endif
 						@endforeach	
@@ -102,6 +101,9 @@
 						@if(count(list_dokus()) > 0 && list_dokus()->status == 1)
 							<li><img src="{{url('img/bank/doku.jpg')}}" alt="doku" title="Doku" /></li>
 						@endif
+						@if(count(list_veritrans()) > 0 && list_veritrans()->status == 1 && list_veritrans()->type == 1)
+							<li><img src="{{url('img/bank/veritrans.png')}}" alt="veritrans" title="Veritrans"></li>
+						@endif
 						</ul>
 					</div>
 				</div>
@@ -114,4 +116,4 @@
 					</div>
 				</div>
 			</footer>
-			{{pluginPowerup()}}
+			{{pluginPowerup()}} 
