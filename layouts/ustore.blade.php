@@ -24,5 +24,6 @@
 		<!-- JS Part Start-->
 		{{ Theme::partial('defaultjs') }}	
 		<!-- JS Part End-->
+		{{ Theme::partial('analytic') }} 
 	</body>
 </html>
