@@ -18,5 +18,6 @@
 		</div>
 		<!-- JavaScripts -->
 		{{ Theme::partial('defaultjs') }}	
+		{{ Theme::partial('analytic') }} 
 	</body>
 </html>
