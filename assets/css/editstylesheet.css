@@ -331,8 +331,8 @@ a.wishlist:hover {color:#F15A23;}
 
 /************* Product *************/
 .product-info { overflow: auto; margin-bottom: 20px; }
-.product-info > .left { float: left; }
-.product-info > .left + .right { margin-left:280px; }
+.product-info > .left-side { float: left; }
+.product-info > .left-side + .right { margin-left:280px; }
 .product-info .image { background:#fff; float:left; margin:2px 5px 20px 0px; padding:8px; text-align: center; -webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; -ms-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; }
 .product-info .image_inside { margin:0px; position:relative; z-index:20; padding:0; }
 .product-info .image .zoom_btn { position: absolute; bottom:6px; right:0px; width: auto; height: 11px; z-index:21; }

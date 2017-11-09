@@ -88,26 +88,26 @@
 			</div>
 			<!--Breadcrumb Part End-->
 			<div class="product-info">
-				<div class="left">
+				<div class="left-side">
 					<div class="image">
-						<a title="{{$produk->nama}}" href="{{product_url($produk)}}" class="colorbox">
+						<a title="{{$produk->nama}}" href="{{product_image_url($produk->gambar1)}}" class="colorbox">
 							{{HTML::image(product_image_url($produk->gambar1), $produk->nama, array('width'=>250,'height'=>250,'id'=>"image"))}} 
 						</a>
 					</div>
 					<div class="image-additional">
 					@if($produk->gambar2!='')
-						<a title="{{$produk->nama}}" href="{{product_url($produk)}}" class="colorbox">
-							{{HTML::image(product_image_url($produk->gambar1), $produk->nama, array('width'=>62))}}
+						<a title="{{$produk->nama}}" href="{{product_image_url($produk->gambar2)}}" class="colorbox">
+							{{HTML::image(product_image_url($produk->gambar2), $produk->nama, array('width'=>62))}}
 						</a>
 					@endif
 					@if($produk->gambar3!='')
-						<a title="{{$produk->nama}}" href="{{product_url($produk)}}" class="colorbox">
-						{{HTML::image(product_image_url($produk->gambar1), $produk->nama, array('width'=>62))}}
+						<a title="{{$produk->nama}}" href="{{product_image_url($produk->gambar3)}}" class="colorbox">
+							{{HTML::image(product_image_url($produk->gambar3), $produk->nama, array('width'=>62))}}
 						</a>
 					@endif
 					@if($produk->gambar4!='')
-						<a title="{{$produk->nama}}" href="{{product_url($produk)}}" class="colorbox">
-						{{HTML::image(product_image_url($produk->gambar1), $produk->nama, array('width'=>62))}}
+						<a title="{{$produk->nama}}" href="{{product_image_url($produk->gambar4)}}" class="colorbox">
+							{{HTML::image(product_image_url($produk->gambar4), $produk->nama, array('width'=>62))}}
 						</a>
 					@endif 
 					</div>
@@ -147,7 +147,7 @@
 							<div class="cart">
 								<div>
 									Jumlah: &nbsp;
-									<input type="text" value="1" size="2" class="w30" name='qty'>
+									<input type="text" value="1" size="2" class="w30" name="qty">
 									<!-- <input type="hidden" value="36" size="2" name="product_id"> &nbsp; -->
 									<input type="submit" class="button" id="button-cart" value="Tambah ke keranjang">
 								</div>
