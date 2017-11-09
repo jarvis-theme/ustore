@@ -624,8 +624,8 @@ ul.list-bullet li a:hover { color:#444; -webkit-transition: all 0.3s ease-in-out
 	#menu > ul > li ul + ul {padding-left:0px;}
 	.jcarousel-skin-cust6om {display:none!important;}
 	.grid_3{margin:0;}
-	.product-info > .left {float:none;text-align:center;}
-	.product-info > .left + .right {margin-left:auto}
+	.product-info > .left-side {float:none;text-align:center;}
+	.product-info > .left-side + .right {margin-left:auto}
 	.product-info .image {float:none;}
 	.product-info .image a img {display:inline;}
 	.product-info .image-additional {width:auto;margin-bottom:10px;}
@@ -754,3 +754,4 @@ form[name="order"] > input[name="SAVE"]:hover {
 .btn-pay { background: #00aee7; border: none; padding: 10px; color: #fff; text-decoration: none; }
 .btn-pay:hover { cursor: pointer; opacity: 0.7 }
 .confirm-pay { background: #fff; padding: 10px; }
+img { max-width: 100%; }
